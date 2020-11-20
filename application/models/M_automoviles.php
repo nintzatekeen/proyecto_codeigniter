@@ -106,7 +106,7 @@ class M_automoviles extends CI_Model{
             $values.="(null, $iduser, $id, STR_TO_DATE('".$ahora->format('Y-m-d H:i:s')."', '%Y-%m-%d %h:%i:%s'), STR_TO_DATE('". $fecha_entrega->format('Y-m-d H:i:s')."', '%Y-%m-%d %h:%i:%s'), $seguro, ".$precio.")";
             if($con!=count($alquileres)){
                 $values.=", ";
-                $where.=" and ";
+                $where.=" or ";
             }
             $con++;
         }
