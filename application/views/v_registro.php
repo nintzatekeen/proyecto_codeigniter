@@ -1,0 +1,43 @@
+<?php
+    echo "<h1>REGÍSTRATE</h1>";
+    echo "<table>";
+        echo form_open(site_url()."/c_automoviles/registro");
+            echo"<tr>";
+                echo "<td><strong>Nombre completo</strong></td>";
+                echo "<td>". form_input("nombre")."</td>";
+            echo"</tr>";
+            echo"<tr>";
+                echo "<td><strong>DNI</strong></td>";
+                echo "<td>". form_input("dni")."</td>";
+            echo"</tr>";
+            echo"<tr>";
+                echo "<td><strong>Nombre de usuario</strong></td>";
+                echo "<td>". form_input("username")."</td>";
+            echo"</tr>";
+            echo"<tr>";
+                echo "<td><strong>Contraseña</strong></td>";
+                echo "<td>". form_password("password")."</td>";
+            echo"</tr>";
+            echo"<tr>";
+                echo "<td><strong>Confirmar contraseña</strong></td>";
+                echo "<td>". form_password("confirm_pass")."</td>";
+            echo"</tr>";
+            echo"<tr>";
+                echo "<td><strong>Email</strong></td>";
+                echo "<td>". form_input("email")."</td>";
+            echo"</tr>";
+            echo"<tr>";
+                echo "<td><strong>Cuenta bancaria</strong></td>";
+                echo "<td>". form_input("banco")."</td>";
+            echo"</tr>";
+            echo"<tr>";
+                echo "<td><strong>Premium</strong></td>";
+                echo "<td>". form_checkbox("premium")."</td>";
+            echo"</tr>";
+            echo "<tr><td colspan='2'>". form_submit("submit", "REGÍSTRATE")."</td></tr>";
+        echo form_close();
+    echo "</table>";
+    echo $error;
+    echo "<p>".$this->encryption->decrypt("e2290f0288089f74de63f62c3e2deb8d8ade03182b854cc030")."</p>";
+?>
+
