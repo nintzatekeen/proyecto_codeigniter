@@ -157,6 +157,9 @@ class M_automoviles extends CI_Model{
             $values="";
             foreach ($imagenes as $imagen){
                 if($values==""){
+                    if($imagen==""){
+                        return false;
+                    }
                     $values=" (null, $idcarro, 'img/$imagen')";
                 }
                 else{
@@ -165,7 +168,6 @@ class M_automoviles extends CI_Model{
             }
             $sql.=$values;
             $this->db->query($sql);
-            return $sql;
         }
     }
 }
