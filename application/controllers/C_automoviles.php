@@ -225,4 +225,42 @@ class C_automoviles extends CI_Controller {
         $this->load->view("v_arigato_reg");
         $this->load->view('v_pie');
     }
+    
+    public function anadir(){
+        $datos['error']="";
+        $datos['added']=false;
+        if($this->input->post("submit")){
+            $this->form_validation->set_rules("marca", "marca", "required");
+            $this->form_validation->set_rules("modelo", "modelo", "required");
+            $this->form_validation->set_rules("matricula", "matricula", "max_length[10]|required");
+            $this->form_validation->set_rules("anio", "anio", "required|numeric");
+            $this->form_validation->set_rules("precio", "precio", "required|numeric");
+            if($this->form_validation->run()==false){
+                $datos['error']="<p style='color:red'>Datos del formulario inválidos<p>";
+            }
+            else{
+                $imgs=array();
+                foreach($_FILES['imagenes']['name'] as $i => $name){
+                    $tmp_name=$_FILES['imagenes']['tmp_name'][$i];
+                    move_uploaded_file($tmp_name, "img/$name");
+                    $imgs[]=$name;
+                }
+                $this->m_automoviles->anadir_auto($this->input->post("marca"),
+                        $this->input->post("modelo"),
+                        $this->input->post("matricula"),
+                        $this->input->post("anio"),
+                        $this->input->post("combustible"),
+                        $this->input->post("precio"),
+                        $imgs);
+            }
+            $datos['added']=true;
+        }
+        $datos['marcas']= $this->m_automoviles->marcas();
+        $this->load->view('v_cabecera', $datos);
+        $this->load->view("v_anadir", $datos);
+        $this->load->view('v_pie');
+    }
+    
+    
+    
 }

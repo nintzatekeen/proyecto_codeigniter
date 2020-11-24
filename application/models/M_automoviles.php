@@ -147,6 +147,27 @@ class M_automoviles extends CI_Model{
         else
             return false;
     }
+    public function anadir_auto($marca, $modelo, $matricula, $anio, $combustible, $precio, $imagenes){
+        $sql="insert into automovil( id, marca, modelo, matricula, anio, combustible, precio_base_dia, devuelto)"
+                . " values (null, '$marca', '$modelo', '$matricula', $anio, '$combustible', $precio, 1)";
+        $this->db->query($sql);
+        if(count($imagenes)>0){
+            $idcarro=$this->db->insert_id();
+            $sql="insert into imagenes (id, idautomovil, imagen) values";
+            $values="";
+            foreach ($imagenes as $imagen){
+                if($values==""){
+                    $values=" (null, $idcarro, 'img/$imagen')";
+                }
+                else{
+                    $values.=", (null, $idcarro, 'img/$imagen')";
+                }
+            }
+            $sql.=$values;
+            $this->db->query($sql);
+            return $sql;
+        }
+    }
 }
     
 ?>

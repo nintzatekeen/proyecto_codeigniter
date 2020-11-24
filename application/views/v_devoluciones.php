@@ -1,4 +1,7 @@
 <?php
+    if($this->session->userdata("login")[1]!="admin"){
+        redirect(site_url()."/c_automoviles/index");
+    }
     echo "<table>";
         echo "<caption>Estado de devolución de los automóviles</caption>";
         echo "<tr>";

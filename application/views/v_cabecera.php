@@ -19,15 +19,17 @@ and open the template in the editor.
             <?php
                 if($this->session->userdata("login")){
                     $enlace= site_url()."/c_automoviles/logout";
-                    echo "<a href='$enlace'>Log Out</a>";
+                    echo "<a style='margin:0 5px' href='$enlace'>Log Out</a>";
                     if($this->session->userdata("login")[1]=="admin"){
                         $enlace= site_url()."/c_automoviles/devoluciones";
-                        echo "<a href='$enlace'>Gestión de devoluciones</a>";
+                        echo "<a style='margin:0 5px' href='$enlace'>Gestión de devoluciones</a>";
+                        $enlace= site_url()."/c_automoviles/anadir";
+                        echo "<a style='margin:0 5px' href='$enlace'>Añadir automóvil</a>";
                     }
                 }
                 else{
                     $enlace= site_url()."/c_automoviles/login";
-                    echo "<a href='$enlace'>Log In</a>";
+                    echo "<a style='margin:0 5px' href='$enlace'>Log In</a>";
                 }
             ?>
         </div>
